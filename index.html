@@ -9,6 +9,7 @@
 </head>
 
 <body>
+  <h1>SharedWorker</h1>
   <div id="div">0</div>
   <button id="btn">
     Increment
@@ -16,13 +17,14 @@
   <script>
     const div = document.getElementById('div')
     const btn = document.getElementById('btn')
-    const w = new Worker('worker.js')
+    const w = new SharedWorker('worker.js').port
     btn.addEventListener('click', () => {
       w.postMessage('')
     })
     w.addEventListener('message', msg => {
       div.innerText = msg.data
     })
+    w.start()
   </script>
 </body>
 
